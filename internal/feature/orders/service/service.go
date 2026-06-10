@@ -11,6 +11,20 @@ type OrderRepository interface {
 		ctx context.Context,
 		order core_domain.Order,
 	) (core_domain.Order, error)
+
+	GetOrder(
+		ctx context.Context,
+		OrderID int64,
+	) (core_domain.Order, error)
+
+	GetAllOrders(
+		ctx context.Context,
+	) ([]core_domain.Order, error)
+
+	CancelOrder(
+		ctx context.Context,
+		OrderID int64,
+	) (core_domain.Order, error)
 }
 
 type OrderService struct {

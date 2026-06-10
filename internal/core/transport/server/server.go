@@ -18,6 +18,20 @@ type OrderCase interface {
 		ctx context.Context,
 		req *pb.OrderRequest,
 	) (*pb.OrderResponse, error)
+
+	GetOrder(
+		ctx context.Context,
+		req *pb.OrderID,
+	) (*pb.OrderResponse, error)
+
+	GetAllOrders(
+		ctx context.Context,
+	) (*pb.ListOrder, error)
+
+	CancelOrder(
+		ctx context.Context,
+		id *pb.OrderID,
+	) (*pb.OrderResponse, error)
 }
 
 type Server struct {

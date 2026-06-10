@@ -12,6 +12,20 @@ type OrderService interface {
 		quantity int64,
 		ProductID int64,
 	) (core_domain.Order, error)
+
+	GetOrder(
+		ctx context.Context,
+		OrderID int64,
+	) (core_domain.Order, error)
+
+	GetAllOrders(
+		ctx context.Context,
+	) ([]core_domain.Order, error)
+
+	CancelOrder(
+		ctx context.Context,
+		OrderID int64,
+	) (core_domain.Order, error)
 }
 
 type OrderTransport struct {

@@ -7,7 +7,10 @@ import (
 	pb "github.com/Hodorev-Evgeny/inventory-system-api/api/order"
 )
 
-func (t *OrderTransport) CreateOrder(ctx context.Context, req *pb.OrderRequest) (*pb.OrderResponse, error) {
+func (t *OrderTransport) CreateOrder(
+	ctx context.Context,
+	req *pb.OrderRequest,
+) (*pb.OrderResponse, error) {
 	order_domain, err := t.service.CreateOrder(ctx, req.Quantity, req.ProductId.Id)
 	if err != nil {
 		return nil, err
