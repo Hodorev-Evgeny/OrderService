@@ -1,13 +1,17 @@
 package main
 
 import (
-	core_logger "OrderService/internal/core/logger"
-	"OrderService/internal/core/transport/server"
 	"context"
 	"fmt"
 	"os/signal"
 	"syscall"
 
+	core_logger "github.com/Hodorev-Evgeny/OrderService/internal/core/logger"
+	core_pgx_pool "github.com/Hodorev-Evgeny/OrderService/internal/core/repository/postgres/pgx"
+	"github.com/Hodorev-Evgeny/OrderService/internal/core/transport/server"
+	feature_order_repository "github.com/Hodorev-Evgeny/OrderService/internal/feature/orders/repository"
+	feature_order_service "github.com/Hodorev-Evgeny/OrderService/internal/feature/orders/service"
+	feature_order_transport "github.com/Hodorev-Evgeny/OrderService/internal/feature/orders/transport"
 	"go.uber.org/zap"
 )
 
@@ -26,9 +30,17 @@ func main() {
 	}
 	ctx = core_logger.ToContext(ctx, logger)
 
+	configPool := core_pgx_pool.MustPostgresConfig()
+	pool := core_pgx_pool.CreatePoolMust(ctx, configPool)
+
+	orderCaseRepository := feature_order_repository.NewOrderRepository(pool)
+	orderCaseServise := feature_order_service.NewOrderService(orderCaseRepository)
+	orderCase := feature_order_transport.NewOrderTransport(orderCaseServise)
+
 	server_config := server.MustGetServerConfig()
 	server := server.NewServer(
 		server_config,
+		orderCase,
 	)
 
 	logger.Info("Starting server")
