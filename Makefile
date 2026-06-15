@@ -67,3 +67,6 @@ port-forwarder-postgres-stop:
 app-run:
 	@go mod tidy && \
 	go run ${PROJECT_ROOT}/cmd/apporder/main.go
+
+deploy-run:
+	@docker compose up -d order-service

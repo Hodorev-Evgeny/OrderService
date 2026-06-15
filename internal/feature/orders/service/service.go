@@ -4,6 +4,7 @@ import (
 	"context"
 
 	core_domain "github.com/Hodorev-Evgeny/OrderService/internal/core/domain"
+	pr "github.com/Hodorev-Evgeny/inventory-system-api/api/product"
 )
 
 type OrderRepository interface {
@@ -29,12 +30,15 @@ type OrderRepository interface {
 
 type OrderService struct {
 	repository OrderRepository
+	client     pr.ProductServiceClient
 }
 
 func NewOrderService(
 	repository OrderRepository,
+	client pr.ProductServiceClient,
 ) *OrderService {
 	return &OrderService{
 		repository: repository,
+		client:     client,
 	}
 }
