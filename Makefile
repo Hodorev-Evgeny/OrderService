@@ -44,7 +44,7 @@ migrate-action:
 	fi; \
 	docker compose run --rm migrate \
 		-path /migrations \
-		-database postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@data-base:5432/${POSTGRES_DB}?sslmode=disable \
+		-database postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db-service-order:5432/${POSTGRES_DB}?sslmode=disable \
 		"$(action)"
 
 clean_migrate:
@@ -67,3 +67,6 @@ port-forwarder-postgres-stop:
 app-run:
 	@go mod tidy && \
 	go run ${PROJECT_ROOT}/cmd/apporder/main.go
+
+deploy-run:
+	@docker compose up -d order-service

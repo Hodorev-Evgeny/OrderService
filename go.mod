@@ -3,10 +3,12 @@ module github.com/Hodorev-Evgeny/OrderService
 go 1.26
 
 require (
+	github.com/Hodorev-Evgeny/inventory-system-api v0.0.0-20260606205754-dcf45ab8e80c
 	github.com/jackc/pgx/v5 v5.10.0
 	github.com/kelseyhightower/envconfig v1.4.0
 	go.uber.org/zap v1.28.0
 	google.golang.org/grpc v1.81.1
+	google.golang.org/protobuf v1.36.11
 )
 
 require (
@@ -19,5 +21,4 @@ require (
 	golang.org/x/sys v0.42.0 // indirect
 	golang.org/x/text v0.34.0 // indirect
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20260226221140-a57be14db171 // indirect
-	google.golang.org/protobuf v1.36.11 // indirect
 )

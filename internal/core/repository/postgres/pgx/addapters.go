@@ -1,9 +1,9 @@
 package core_pgx_pool
 
 import (
-	core_repository_pool "OrderService/internal/core/repository/postgres"
 	"errors"
 
+	core_repository_pool "github.com/Hodorev-Evgeny/OrderService/internal/core/repository/postgres"
 	"github.com/jackc/pgx/v5"
 	"github.com/jackc/pgx/v5/pgconn"
 )

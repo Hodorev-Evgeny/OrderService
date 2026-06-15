@@ -8,9 +8,10 @@ import (
 )
 
 type ServerConfig struct {
-	ADDR     int           `envconfig:"ADDR"`
-	TIMEZONE time.Location `envconfig:"TIMEZONE"`
-	TIMEOUT  time.Duration `envconfig:"TIMEOUT"`
+	ADDR        int           `envconfig:"ADDR"`
+	TIMEZONE    time.Location `envconfig:"TIMEZONE"`
+	TIMEOUT     time.Duration `envconfig:"TIMEOUT"`
+	PRODUCTADDR string        `envconfig:"PRODUCTADDR"`
 }
 
 func getServerConfig() (ServerConfig, error) {
